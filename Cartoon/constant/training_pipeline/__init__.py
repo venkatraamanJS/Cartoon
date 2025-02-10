@@ -10,8 +10,7 @@ DATA_INGESTION_DIR_NAME: str = "data_ingestion"
 
 DATA_INGESTION_FEATURE_STORE_DIR: str = "feature_store"
 
-DATA_DOWNLOAD_URL: str = "https://github.com/venkatraamanJS/Real-Time-Object-Detection/raw/main/Sign%20Language.v2i.yolov5pytorch.zip"
-
+DATA_DOWNLOAD_URL: str = "https://github.com/venkatraamanJS/Cartoon/blob/main/Dataset/Cartoon_v5.zip"
 
 """
 Data Validation realted contant start with DATA_VALIDATION VAR NAME
