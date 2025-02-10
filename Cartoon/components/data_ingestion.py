@@ -2,21 +2,23 @@ import os
 import sys
 from six.moves import urllib
 import zipfile
-from signLanguage.logger import logging
-from signLanguage.exception import SignException
-from signLanguage.entity.config_entity import DataIngestionConfig
-from signLanguage.entity.artifact_entity import DataIngestionArtifact
+import shutil
+from Cartoon.logger import logging
+from Cartoon.exception import CartoonException
+from Cartoon.entity.config_entity import DataIngestionConfig
+from Cartoon.entity.artifact_entity import DataIngestionArtifact
 
-
-
+#data_ingestion_config: DataIngestionConfig → This is type hinting, which tells Python (and other developers) 
+#that data_ingestion_config should be of type DataIngestionConfig.
 class DataIngestion:
-    def __init__(self, data_ingestion_config: DataIngestionConfig = DataIngestionConfig()):
+    def __init__(self, data_ingestion_config: DataIngestionConfig = None):
+        if data_ingestion_config is None:
+            data_ingestion_config = DataIngestionConfig()
         try:
             self.data_ingestion_config = data_ingestion_config
         except Exception as e:
-           raise SignException(e, sys)
+           raise CartoonException(e, sys)
         
-
     
     def download_data(self)-> str:
         '''
@@ -32,10 +34,11 @@ class DataIngestion:
             logging.info(f"Downloading data from {dataset_url} into file {zip_file_path}")
             urllib.request.urlretrieve(dataset_url, zip_file_path)
             logging.info(f"Downloaded data from {dataset_url} into file {zip_file_path}")
+            
             return zip_file_path
 
         except Exception as e:
-            raise SignException(e, sys)
+            raise CartoonException(e, sys)
         
 
     
@@ -52,10 +55,16 @@ class DataIngestion:
                 zip_ref.extractall(feature_store_path)
             logging.info(f"Extracting zip file: {zip_file_path} into dir: {feature_store_path}")
 
+            # Check for __MACOSX folder and delete it
+            macosx_folder = os.path.join(feature_store_path, "__MACOSX")
+            if os.path.exists(macosx_folder):
+                shutil.rmtree(macosx_folder)
+                logging.info(f"Deleted __MACOSX folder from {feature_store_path}")
+
             return feature_store_path
 
         except Exception as e:
-            raise SignException(e, sys)
+            raise CartoonException(e, sys)
         
 
     
@@ -76,4 +85,4 @@ class DataIngestion:
             return data_ingestion_artifact
 
         except Exception as e:
-            raise SignException(e, sys)
+            raise CartoonException(e, sys)

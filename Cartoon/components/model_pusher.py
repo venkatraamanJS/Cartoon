@@ -5,7 +5,7 @@ from signLanguage.entity.artifact_entity import (
     ModelTrainerArtifact
 )
 from signLanguage.entity.config_entity import ModelPusherConfig
-from signLanguage.exception import SignException
+from signLanguage.exception import CartoonException
 from signLanguage.logger import logging
 
 
@@ -49,4 +49,4 @@ class ModelPusher:
             return model_pusher_artifact
 
         except Exception as e:
-            raise SignException(e, sys) from e
+            raise CartoonException(e, sys) from e

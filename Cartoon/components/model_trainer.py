@@ -2,7 +2,7 @@ import os,sys
 import yaml
 from signLanguage.utils.main_utils import read_yaml_file
 from signLanguage.logger import logging
-from signLanguage.exception import SignException
+from signLanguage.exception import CartoonException
 from signLanguage.entity.config_entity import ModelTrainerConfig
 from signLanguage.entity.artifact_entity import ModelTrainerArtifact
 
@@ -59,7 +59,7 @@ class ModelTrainer:
 
 
         except Exception as e:
-            raise SignException(e, sys)
+            raise CartoonException(e, sys)
 
 
 

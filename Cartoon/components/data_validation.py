@@ -1,13 +1,10 @@
 import os,sys
 import shutil
-from signLanguage.logger import logging
-from signLanguage.exception import SignException
-from signLanguage.entity.config_entity import DataValidationConfig
-from signLanguage.entity.artifact_entity import (DataIngestionArtifact,
+from Cartoon.logger import logging
+from Cartoon.exception import CartoonException
+from Cartoon.entity.config_entity import DataValidationConfig
+from Cartoon.entity.artifact_entity import (DataIngestionArtifact,
                                                  DataValidationArtifact)
-
-
-
 
 class DataValidation:
     def __init__(
@@ -20,7 +17,7 @@ class DataValidation:
             self.data_validation_config = data_validation_config
 
         except Exception as e:
-            raise SignException(e, sys) 
+            raise CartoonException(e, sys) 
         
 
     
@@ -46,7 +43,7 @@ class DataValidation:
 
 
         except Exception as e:
-            raise SignException(e, sys)
+            raise CartoonException(e, sys)
         
 
     
@@ -66,4 +63,4 @@ class DataValidation:
             return data_validation_artifact
 
         except Exception as e:
-            raise SignException(e, sys)
+            raise CartoonException(e, sys)

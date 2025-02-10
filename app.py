@@ -1,6 +1,6 @@
 import sys, os
 from Cartoon.pipeline.training_pipeline import TrainPipeline
-from Cartoon.exception import SignException
+from Cartoon.exception import CartoonException
 from Cartoon.logger import logging
 
 # from Cartoon.utils.main_utils import decodeImage, encodeImageIntoBase64
@@ -86,5 +86,6 @@ logging.info("Welcome to Friday-night")
 try:
     obj=TrainPipeline()
     obj.run_pipeline()
+
 except Exception as e:
-    raise SignException(e,sys) from e
+    raise CartoonException(e,sys) from e

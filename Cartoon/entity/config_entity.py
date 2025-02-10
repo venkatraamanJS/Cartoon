@@ -1,9 +1,16 @@
 import os
 from dataclasses import dataclass
 from datetime import datetime
-from signLanguage.constant.training_pipeline import *
+from Cartoon.constant.training_pipeline import *
 
 TIMESTAMP: str = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
+
+# @dataclass
+# class TrainingPipelineConfig:
+#     artifacts_dir: str = field(init=False)  # Prevent default initialization
+
+#     def __post_init__(self):
+#         self.artifacts_dir = os.path.join(ARTIFACTS_DIR, datetime.now().strftime("%m_%d_%Y_%H_%M_%S"))
 
 @dataclass
 class TrainingPipelineConfig:
