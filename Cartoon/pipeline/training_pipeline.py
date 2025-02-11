@@ -23,7 +23,7 @@ class TrainPipeline:
         logging.info(self.data_ingestion_config)
         self.data_validation_config = DataValidationConfig()
         self.model_trainer_config = ModelTrainerConfig()
-        # self.model_pusher_config = ModelPusherConfig()
+        self.model_pusher_config = ModelPusherConfig()
         # self.s3_operations = S3Operation()
 
 
@@ -108,9 +108,10 @@ class TrainPipeline:
             if data_validation_artifact.validation_status == True:
                 logging.info("Data Validation success")
                 model_trainer_artifact = self.start_model_trainer()
+                logging.info(model_trainer_artifact)
                 logging.info("Model Trainer success")
 
-            #     #model_pusher_artifact = self.start_model_pusher(model_trainer_artifact=model_trainer_artifact,s3=self.s3_operations)
+                # model_pusher_artifact = self.start_model_pusher(model_trainer_artifact=model_trainer_artifact,s3=self.s3_operations)
 
             else:
                 raise Exception("Your data is not in correct format")

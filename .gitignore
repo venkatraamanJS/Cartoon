@@ -161,4 +161,5 @@ cython_debug/
 CollectedImages/*
 artifacts/*
 yolov5/*
+Dataset/*
 log/*

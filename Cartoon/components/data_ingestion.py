@@ -8,8 +8,22 @@ from Cartoon.exception import CartoonException
 from Cartoon.entity.config_entity import DataIngestionConfig
 from Cartoon.entity.artifact_entity import DataIngestionArtifact
 
+# Version 1 (With Type Hinting)
+# class DataIngestion:
+#     def __init__(self, data_ingestion_config: DataIngestionConfig = DataIngestionConfig()):
+#def:
 #data_ingestion_config: DataIngestionConfig → This is type hinting, which tells Python (and other developers) 
 #that data_ingestion_config should be of type DataIngestionConfig.
+# DataIngestionConfig() → This creates an instance (object) of the DataIngestionConfig class and
+# sets it as the default value for data_ingestion_config.
+
+# Version 2 (Without Type Hinting)
+# class DataIngestion:
+#     def __init__(self, data_ingestion_config = DataIngestionConfig()):
+# def:
+# This works the same way, except it does not explicitly specify the expected type of data_ingestion_config.
+# Python will still assign data_ingestion_config = DataIngestionConfig() by default if no argument is passed.
+
 class DataIngestion:
     def __init__(self, data_ingestion_config: DataIngestionConfig = None):
         if data_ingestion_config is None:
