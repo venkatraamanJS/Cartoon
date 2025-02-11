@@ -48,5 +48,9 @@ pip install -r requirements.txt
 ```
 
 ```bash
+git clone https://github.com/ultralytics/yolov5.git
+```
+
+```bash
 python app.py
 ``
