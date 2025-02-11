@@ -4,8 +4,8 @@ from Cartoon.exception import CartoonException
 from Cartoon.components.data_ingestion import DataIngestion
 from Cartoon.components.data_validation import DataValidation
 from Cartoon.components.model_trainer import ModelTrainer
-# from Cartoon.components.model_pusher import ModelPusher
-# from Cartoon.configuration.s3_operations import S3Operation
+from Cartoon.components.model_pusher import ModelPusher
+from Cartoon.configuration.s3_operations import S3Operation
 
 from Cartoon.entity.config_entity import (DataIngestionConfig,
                                                DataValidationConfig,
@@ -82,9 +82,21 @@ class TrainPipeline:
             return model_trainer_artifact
 
         except Exception as e:
-            raise SignException(e, sys)
+            raise CartoonException(e, sys)
         
-  
+    def start_model_pusher(self, model_trainer_artifact: ModelTrainerArtifact, s3: S3Operation):
+
+        try:
+            model_pusher = ModelPusher(
+                model_pusher_config=self.model_pusher_config,
+                model_trainer_artifact= model_trainer_artifact,
+                s3=s3
+                
+            )
+            model_pusher_artifact = model_pusher.initiate_model_pusher()
+            return model_pusher_artifact
+        except Exception as e:
+            raise CartoonException(e, sys)
     
     def run_pipeline(self) -> None:
         try:

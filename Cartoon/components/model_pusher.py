@@ -1,13 +1,9 @@
 import sys
-from signLanguage.configuration.s3_operations import S3Operation
-from signLanguage.entity.artifact_entity import (
-    ModelPusherArtifacts,
-    ModelTrainerArtifact
-)
-from signLanguage.entity.config_entity import ModelPusherConfig
-from signLanguage.exception import CartoonException
-from signLanguage.logger import logging
-
+from Cartoon.configuration.s3_operations import S3Operation
+from Cartoon.entity.artifact_entity import (ModelPusherArtifacts,ModelTrainerArtifact)
+from Cartoon.entity.config_entity import ModelPusherConfig
+from Cartoon.exception import CartoonException
+from Cartoon.logger import logging
 
 
 class ModelPusher:
@@ -16,8 +12,6 @@ class ModelPusher:
         self.model_pusher_config = model_pusher_config
         self.model_trainer_artifacts = model_trainer_artifact
         self.s3 = s3
-
-
     
     def initiate_model_pusher(self) -> ModelPusherArtifacts:
 
