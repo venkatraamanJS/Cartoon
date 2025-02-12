@@ -160,6 +160,5 @@ cython_debug/
 #.idea/
 CollectedImages/*
 artifacts/*
-yolov5/*
 Dataset/*
 log/*
